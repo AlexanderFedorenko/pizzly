@@ -24,7 +24,3 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: pizzly
-  host: localhost
-  username: pizzly
-  password: 123456

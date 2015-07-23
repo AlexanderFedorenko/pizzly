@@ -1,0 +1,12 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}/
+    %meta{content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no', name: 'viewport'}/
+    %title Pizz.ly - url shortener
+    =stylesheet_link_tag 'application', media: 'all', data: {:'turbolinks-track' => true}
+    =csrf_meta_tags
+  %body
+    .container
+      =yield
+    =javascript_include_tag 'application', data: {:'turbolinks-track' => true}
