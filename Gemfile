@@ -50,3 +50,5 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
+
+ruby '2.2.2'
