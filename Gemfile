@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -29,6 +29,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Use HAML for templates
+gem 'haml-rails'
+
+# Front-end gems
+source 'https://rails-assets.org' do
+  gem 'rails-assets-materialize'
+end
 
 group :production do
   # Use PostgreSQL as the database for Active Record
