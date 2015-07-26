@@ -45,6 +45,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :development do
+  gem 'travis'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -59,8 +63,6 @@ group :development, :test do
   gem 'sqlite3'
 
   gem 'rspec-rails'
-
-  gem 'travis'
 end
 
 ruby '2.2.2'
