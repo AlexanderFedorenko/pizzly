@@ -1,16 +1,24 @@
-= form_for @link do |f|
-  - if @link.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@link.errors.count, "error")} prohibited this link from being saved:"
-      %ul
-        - @link.errors.full_messages.each do |msg|
-          %li= msg
+.row
+  .col.s6.offset-s3
+    %h4.light
+      Shorten your link
+    .card.large
+      = form_for @link do |f|
+        .card-image
+          %img{src: "https://brainsyndicate.files.wordpress.com/2010/12/pizzly.jpg"}
+          %span.card-title
+            Make your links manageable.
+        .card-content
+          - if @link.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@link.errors.count, "error")} prohibited this link from being saved:"
+              %ul
+                - @link.errors.full_messages.each do |msg|
+                  %li= msg
 
-  .field
-    = f.label :origin
-    = f.text_field :origin
-  .field
-    = f.label :url
-    = f.text_field :url
-  .actions
-    = f.submit 'Save'
+          .row
+            .input-field.col.s8
+              = f.text_field :origin, {placeholder: "Paste your URL, shrink it, and share."}
+            .input-field.col.s4
+              %button.btn.waves-effect.waves-light{type: "submit", name: "commit"}
+                Submit

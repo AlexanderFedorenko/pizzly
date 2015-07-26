@@ -2,8 +2,8 @@ class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   # GET /links
-  # GET /links.json
   def index
+    @link = Link.new
     @links = Link.all
   end
 

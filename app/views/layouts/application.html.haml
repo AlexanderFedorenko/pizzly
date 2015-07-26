@@ -7,6 +7,17 @@
     =stylesheet_link_tag 'application', media: 'all', data: {:'turbolinks-track' => true}
     =csrf_meta_tags
   %body
+    %nav
+      .nav-wrapper
     .container
       =yield
+    %footer.page-footer
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text
+              Footer Content
+      .footer-copyright
+        .container
+          © 2015 Copyright Text
     =javascript_include_tag 'application', data: {:'turbolinks-track' => true}
