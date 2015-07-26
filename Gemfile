@@ -59,6 +59,8 @@ group :development, :test do
   gem 'sqlite3'
 
   gem 'rspec-rails'
+
+  gem 'travis'
 end
 
 ruby '2.2.2'

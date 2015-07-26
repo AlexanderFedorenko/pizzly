@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.2.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: JE/ds4sPsXJXxkzYT5zpyn9coj8x51QJstmwMzVkgXlLM8N5KAqpJhu1P1PYAANkSAaBZ0ABhcuzt+y67ilBxqXEKJWeMUyT8KRw7mZnhGM7AGBt8RpYWhZUJS637VqLd60pHTd8dxGsZYbgdg46goa+ogDKLMTMnpZsRorhmkBJ92OoTCp+nAS4scsn9Ce94GcZDhvGiDXoOmpPvBKZSkg0ulhzEMjkEuQjZjx4n8r3tPVUyUPTL/xY5/0e1oaqwEDA7DZP0PumYkiraezNnULtCJ2uP1abbswJZYwrpsn1IGEPM6BYlciYWPo98nw7lOIU59S1kBFlR8tzOSQ7c3mDD9KojVtI3JeDypDaMQWvIbpMIS5vCj11ZOzgYaAjUiM0HbfK9k7lmGk5JGLm5BPYaYl5OYjvWwjslfr3Q+HrIfXu/iN43GVcJdbXondge+w3gSzlPD/SYFGE2cQaPiWkOE9P+HnCnpen8VzObDIByv/l0fNwWpn52bdJyVgm6OXL4StVV9bEUWf1jGE0cvXD9AU0pgqIbeutDHHcVccURaTdvda+TiJ9W0utkQZoGAPg0yuuTpcJhXRM8d1xygQc/0vHPZ+FjfQmuHF7FVPuxMcWyvKzA6KMa598Hc2qA6ovvBtGKj+YMkUQQh7DHdwMDIfhvGNXIkDpoLYGatc=
+  run:
+  - rake db:migrate
+  app: pizzly
+  on:
+    repo: AlexanderFedorenko/pizzly
+before_script:
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- bundle exec rake db:migrate
