@@ -6,19 +6,12 @@
       = form_for @link do |f|
         .card-image
           %img{src: "https://brainsyndicate.files.wordpress.com/2010/12/pizzly.jpg"}
-          %span.card-title
+          %span.card-title.red-text.text-darken-2
             Make your links manageable.
         .card-content
-          - if @link.errors.any?
-            #error_explanation
-              %h2= "#{pluralize(@link.errors.count, "error")} prohibited this link from being saved:"
-              %ul
-                - @link.errors.full_messages.each do |msg|
-                  %li= msg
-
           .row
-            .input-field.col.s8
-              = f.text_field :origin, {placeholder: "Paste your URL, shrink it, and share."}
-            .input-field.col.s4
+            .input-field.col.s9
+              = f.text_field :origin, {placeholder: "Paste your URL, shrink it, and share.", required: 'required', type: 'url', class: 'validate'}
+            .input-field.col.s3
               %button.btn.waves-effect.waves-light{type: "submit", name: "commit"}
                 Submit
