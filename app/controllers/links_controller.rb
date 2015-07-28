@@ -15,12 +15,10 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
 
-    respond_to do |format|
-      if @link.save
-        redirect_to @link, notice: 'Link was successfully created.'
-      else
-        render :new
-      end
+    if @link.save
+      redirect_to @link, notice: 'Link was successfully created.'
+    else
+      render :new
     end
   end
 
