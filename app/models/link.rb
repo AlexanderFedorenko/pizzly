@@ -37,4 +37,9 @@ class Link < ActiveRecord::Base
       end
     end
   end
+
+  def turn_counter
+    self.counter += 1
+    self.save
+  end
 end

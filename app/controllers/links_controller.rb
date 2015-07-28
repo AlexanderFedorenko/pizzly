@@ -12,6 +12,7 @@ class LinksController < ApplicationController
     if @link.nil?
       redirect_to links_path
     else
+      @link.turn_counter
       redirect_to @link.origin
     end
   end
