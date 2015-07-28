@@ -1,5 +1,15 @@
 class Link < ActiveRecord::Base
-  before_create :generate_url
+  before_create :fix_origin_scheme, :generate_url
+
+  def fix_origin_scheme
+    origin = URI.parse(self.origin)
+
+    unless ALLOWED_URL_SCHEMES.include? origin.scheme
+      self.origin = "http://#{self.origin}"
+    end
+
+    self
+  end
 
   def generate_url
     last_link = Link.last
