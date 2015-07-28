@@ -9,6 +9,11 @@ class LinksController < ApplicationController
 
   # GET /abc
   def show
+    if @link.nil?
+      redirect_to links_path
+    else
+      redirect_to @link.origin
+    end
   end
 
   # POST /
@@ -26,11 +31,6 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find_by_url(params[:id])
-      if @link.nil?
-        redirect_to root_path
-      else
-        redirect_to @link.origin
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
