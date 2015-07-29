@@ -1,6 +1,4 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
-
   # GET /
   def index
     @link = Link.new
@@ -22,20 +20,15 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
 
     if @link.save
-      redirect_to @link, notice: 'Link was successfully created.'
+      redirect_to @link
     else
       render :new
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find_by_url(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:origin, :url)
+      params.require(:link).permit(:origin)
     end
 end
