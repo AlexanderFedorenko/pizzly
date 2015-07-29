@@ -6,12 +6,18 @@ class LinksController < ApplicationController
   end
 
   # GET /abc
+  # GET /abc+
   def show
+    @link = Link.find_by_url(params[:id].gsub(/\++$/, ''))
     if @link.nil?
       redirect_to links_path
     else
-      @link.turn_counter
-      redirect_to @link.origin
+      if params[:id][-1] == '+'
+        render 'show'
+      else
+        @link.turn_counter
+        redirect_to @link.origin
+      end
     end
   end
 
@@ -20,7 +26,8 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
 
     if @link.save
-      redirect_to @link
+      pp 'save'
+      redirect_to link_path "#{@link.url}+"
     else
       render :new
     end

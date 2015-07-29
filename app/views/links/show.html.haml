@@ -1,10 +1,21 @@
-%p#notice= notice
-
-%p
-  %b Origin:
-  = @link.origin
-%p
-  %b Url:
-  = @link.url
-
-= link_to 'Edit', edit_link_path(@link)
+.row
+.row
+  .col.s4
+    .card-panel.link-url.cyan.lighten-1
+      = link_url @link.url
+  .col.s8
+    .card-panel.link-origin
+      %p
+        %a{href:@link.origin}
+          = @link.origin
+.row
+  .col.s6
+    .card-panel
+      %p
+        Total clicks:&nbsp;
+        = @link.counter
+  .col.s6
+    .card-panel
+      %p
+        Created at:&nbsp;
+        = @link.created_at.strftime("%Y %b %d")
