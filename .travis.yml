@@ -10,6 +10,9 @@ deploy:
   app: pizzly
   on:
     repo: AlexanderFedorenko/pizzly
+addons:
+  code_climate:
+    repo_token: bfcbfa65456005aeffc1501687003e017e33d32045c043fc3690197343ee1cd3
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
