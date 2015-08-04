@@ -22,6 +22,12 @@ class Link < ActiveRecord::Base
     end
   end
 
+  def turn_counter
+    self.counter += 1
+    self.save
+  end
+
+  private
   def rotate_char(url, index)
     current_char_index = ALLOWED_URL_CHARS.index(url[index])
 
@@ -36,10 +42,5 @@ class Link < ActiveRecord::Base
         rotate_char(url, index - 1)
       end
     end
-  end
-
-  def turn_counter
-    self.counter += 1
-    self.save
   end
 end
