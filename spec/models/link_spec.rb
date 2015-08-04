@@ -1,41 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe Link, type: :model do
-  it "fixes origin url scheme" do
+
+  before do
     Link.create!(origin: "example.com")
-
-    expect(Link.last.origin).to eq("http://example.com")
   end
 
-  it "creates correct first item url" do
-    Link.create!(origin: "http://example.com")
+  context "first item" do
 
-    expect(Link.first.url).to eq(ALLOWED_URL_CHARS[0])
+    it "creates correct first item url" do
+      expect(Link.first.url).to eq(ALLOWED_URL_CHARS[0])
+    end
+
+    it "fixes origin url scheme" do
+      expect(Link.last.origin).to eq("http://example.com")
+    end
+
+    it "turns counter" do
+      first = Link.first
+      first.turn_counter
+
+      expect(first.counter).to eq(1)
+    end
   end
 
-  it "creates correct second item url" do
-    Link.create!(origin: "http://example.com")
+  context "second item" do
 
-    Link.create!(origin: "http://example.com/2")
+    it "creates correct second item url" do
+      Link.create!(origin: "example.com/2")
 
-    expect(Link.last.url).to eq(ALLOWED_URL_CHARS[1])
-  end
+      expect(Link.last.url).to eq(ALLOWED_URL_CHARS[1])
+    end
 
-  it "extends url length if necessary" do
-    first = Link.create!(origin: "http://example.com")
-    first[:url] = ALLOWED_URL_CHARS[-1]
-    first.save
+    it "extends url length if necessary and reset to first char" do
+      first = Link.first
+      first[:url] = ALLOWED_URL_CHARS[-1]
+      first.save
 
-    Link.create!(origin: "http://example.com/2")
+      second = Link.create!(origin: "example.com/2")
 
-    expect(Link.last.url).to eq(ALLOWED_URL_CHARS[0]*2)
-  end
-
-  it "turns counter" do
-    link = Link.create!(origin: "http://example.com")
-
-    link.turn_counter
-
-    expect(link.counter).to eq(1)
+      expect(second.url).to eq(ALLOWED_URL_CHARS[0]*2)
+    end
   end
 end
